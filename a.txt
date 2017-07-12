@@ -1,0 +1,8 @@
+* You can use absolute and relative paths
+* absolute, for example: mydir1/dir2
+* relative, for example: c://my_dir
+*
+a
+b
+a/d
+c:\
