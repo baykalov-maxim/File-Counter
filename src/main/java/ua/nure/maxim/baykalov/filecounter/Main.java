@@ -17,10 +17,10 @@ public class Main implements NativeKeyListener{
 				
 		Logger.getLogger(GlobalScreen.class.getPackage().getName()).setLevel(Level.OFF);	// Disable GlobalScreen logs
 		
-		System.out.println("Author is Maxim Baykalov");
 		try {
 			GlobalScreen.registerNativeHook();
 			GlobalScreen.addNativeKeyListener(new Main());	// Set listeners
+			System.out.println("Author is Maxim Baykalov");
 			System.out.println("Press ESC to stop process");
 		} catch (NativeHookException e) {
 			System.err.println("Exit listener is crushed");
