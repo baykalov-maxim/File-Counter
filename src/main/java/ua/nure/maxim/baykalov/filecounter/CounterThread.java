@@ -10,7 +10,7 @@ import ua.nure.maxim.baykalov.filecounter.utils.PathLoader;
 
 public class CounterThread extends Thread {
 	
-	private static boolean isActive = true;
+	private static boolean isActive = true;	// working flag
 	private String inputFilePath;
 	private String outputFilePath;
 	
@@ -19,6 +19,9 @@ public class CounterThread extends Thread {
 		this.outputFilePath = outputFilePath;
 	}
 
+	/**
+	 * Stop thread. Thread return result at this moment
+	 */
 	public void stopCount() {
 		isActive = false;
 		FileCounter.stop();
@@ -37,15 +40,15 @@ public class CounterThread extends Thread {
 			int i = 0;
 			
 			FormatOutput.renderHeader();
-			for (String path : pathLoader.getPathList()) {
+			for (String path : pathLoader.getPathList()) {	// handling path with file 
 				if (!isActive) {
 					break;
 				}
 				i++;
 				try {
-					count = FileCounter.getFileCountFromPath(path);
-					FormatOutput.renderLine(i, path, count);
-					outputFileWriter.addLine(path, count);
+					count = FileCounter.getFileCountFromPath(path);	// get count file from path
+					FormatOutput.renderLine(i, path, count);	// view info
+					outputFileWriter.addLine(path, count);	// write info to output file
 					
 					outputFileWriter.flush();
 				} catch (PathIsNotDirException e) {
@@ -60,7 +63,7 @@ public class CounterThread extends Thread {
 		finally {
 			if (outputFileWriter != null)
 				outputFileWriter.close();
-			System.exit(1);
+			System.exit(1);	// close app if count stream has been finished 
 		}
 	}
 }

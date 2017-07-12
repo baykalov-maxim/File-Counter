@@ -15,18 +15,19 @@ public class Main implements NativeKeyListener{
 	
 	public static void main(String[] args) {
 				
-		Logger.getLogger(GlobalScreen.class.getPackage().getName()).setLevel(Level.OFF);
+		Logger.getLogger(GlobalScreen.class.getPackage().getName()).setLevel(Level.OFF);	// Disable GlobalScreen logs
 		
+		System.out.println("Author is Maxim Baykalov");
 		try {
 			GlobalScreen.registerNativeHook();
-			GlobalScreen.addNativeKeyListener(new Main());
+			GlobalScreen.addNativeKeyListener(new Main());	// Set listeners
 			System.out.println("Press ESC to stop process");
 		} catch (NativeHookException e) {
 			System.err.println("Exit listener is crushed");
 		}
 		
-		
-		counterThread = new CounterThread(args[0], args[1]);
+		// create Start count thread
+		counterThread = new CounterThread(args[0], args[1]);	
 		counterThread.start();
 	}
 
